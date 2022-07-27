@@ -1,2 +1,5 @@
 
-double mysqrt(double inVal);
+extern "C"
+{
+    double mysqrt(double inVal);
+}
