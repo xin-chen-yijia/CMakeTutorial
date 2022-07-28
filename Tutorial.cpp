@@ -3,9 +3,7 @@
 #include <string>
 #include "TutorialConfig.h"
 
-#ifdef USE_MYMATH
 #include "MathFunctions.h"
-#endif
 
 int main(int argc,char* argv[])
 {
@@ -20,11 +18,7 @@ int main(int argc,char* argv[])
     }
 
     double inVal = std::stoi(argv[1]);
-#ifdef USE_MYMATH
-    const double val = mysqrt(inVal);
-#else
-    const double val = sqrt(inVal);
-#endif
+    const double val = mathfunctions::sqrt(inVal);
 
     std::cout <<inVal << " is " << val <<std::endl;
 

@@ -2,20 +2,26 @@ cmake_minimum_required(VERSION 3.10)
 
 project(Tutorial VERSION 2.0)
 
-option(USE_MYMATH "use tutoiral provided math implementation" ON)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-if(USE_MYMATH)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PORJECT_BINARY_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+
+#if(USE_MYMATH)
     add_subdirectory(MathFunctions)
     list(APPEND EXTRA_LIABS MathFunctions)
     #list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
-endif()
+#endif()
 
 configure_file(TutorialConfig.h.in TutorialConfig.h)
 
 add_executable(Tutorial Tutorial.cpp)
-
 target_link_libraries(Tutorial PUBLIC ${EXTRA_LIABS})
-
 target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}" )
 
 #install
