@@ -18,9 +18,18 @@ target_link_libraries(Tutorial PUBLIC ${EXTRA_LIABS})
 
 target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}" )
 
+#install
 install(TARGETS Tutorial DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h" DESTINATION include)
 
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
+set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
+set(CPACK_SOURCE_GENERATOR "TGZ")
+include(CPack)
+
+# test
 enable_testing()
 
 add_test(NAME Runs COMMAND Tutorial 25)
